@@ -31,7 +31,7 @@ def main():
     print(f"Thanks for playing ({number_of_games} times)!")
 
 
-def scoresave(number_of_guesses, low, high):
+def save_score(number_of_guesses, low, high):
     """Save score to scores.txt with range"""
     with open("scores.txt", "a") as outfile:
         print(f"{number_of_guesses}|{high - low + 1}", file=outfile)
@@ -50,13 +50,13 @@ def play(low, high):
             print("Lower")
         guess = int(input(f"Guess a number between {low} and {high}: "))
     print(f"You got it in {number_of_guesses} guesses.")
-    if good_score(number_of_guesses, high - low + 1) == True:
+    if is_good_score(number_of_guesses, high - low + 1) == True:
         print("Good guessing!")
     else:
         pass
     choice = input("Do you want to save your score? (y/N) ")
     if choice.upper() == "Y":
-        scoresave(number_of_guesses, low, high)
+        save_score(number_of_guesses, low, high)
         return
     else:
         print("Fine then.")
@@ -84,7 +84,7 @@ def get_valid_number(prompt):
     return number
 
 
-def good_score(number_of_guesses, range_):
+def is_good_score(number_of_guesses, range_):
     """Determine whether a score is good by comparing the number of actual and possible guesses."""
     if number_of_guesses <= math.ceil(math.log2(range_)):
         return True
@@ -99,7 +99,7 @@ def high_scores():
             scores.append((int(line[0]), int(line[1])))
     scores.sort()
     for score in scores:
-        marker = "!" if good_score(score[0], score[1]) else ""
+        marker = "!" if is_good_score(score[0], score[1]) else ""
         print(f"{score[0]} ({score[1]}) {marker}")
 
 

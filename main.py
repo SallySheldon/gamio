@@ -61,6 +61,7 @@ def play(low, high):
     else:
         print("Fine then.")
 
+
 def set_limit(low):
     """Set high limit to new value from user input."""
     print("Set new limit")
@@ -81,11 +82,12 @@ def get_valid_number(prompt):
         except ValueError:
             print("Invalid number")
     return number
+
+
 def good_score(number_of_guesses, range_):
     """Determine whether a score is good by comparing the number of actual and possible guesses."""
     if number_of_guesses <= math.ceil(math.log2(range_)):
         return True
-
 
 
 def high_scores():
@@ -99,5 +101,6 @@ def high_scores():
     for score in scores:
         marker = "!" if good_score(score[0], score[1]) else ""
         print(f"{score[0]} ({score[1]}) {marker}")
+
 
 main()

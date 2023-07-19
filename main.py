@@ -31,10 +31,10 @@ def main():
     print(f"Thanks for playing ({number_of_games} times)!")
 
 
-def save_score(number_of_guesses, low, high):
-    """Save score to scores.txt with range."""
+def save_score(number_of_guesses, range_, marker):
+    """Save score to scores.txt with range and marker ("!") of whether a good score."""
     with open("scores.txt", "a") as outfile:
-        print(f"{number_of_guesses}|{high - low + 1}", file=outfile)
+        print(f"{number_of_guesses}|{range_}|{marker}", file=outfile)
 
 
 def play(low, high):
@@ -52,11 +52,12 @@ def play(low, high):
     print(f"You got it in {number_of_guesses} guesses.")
     if is_good_score(number_of_guesses, high - low + 1):
         print("Good guessing!")
+        marker = "!"
     else:
-        pass
+        marker = ""
     choice = input("Do you want to save your score? (y/N) ")
     if choice.upper() == "Y":
-        save_score(number_of_guesses, low, high)
+        save_score(number_of_guesses, high - low + 1, marker)
         return
     else:
         print("Fine then.")
@@ -85,7 +86,7 @@ def get_valid_number(prompt):
 
 
 def is_good_score(number_of_guesses, range_):
-    """Determine whether a score is good by comparing the number of actual to the minimum required guesses."""
+    """Determine whether a score is good by comparing the number of actual to minimum required guesses."""
     return number_of_guesses <= math.ceil(math.log2(range_))
 
 

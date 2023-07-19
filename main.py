@@ -8,6 +8,7 @@ import random
 
 DEFAULT_LOW = 1
 DEFAULT_HIGH = 10
+FILENAME = "scores.txt"
 
 
 def main():
@@ -33,7 +34,7 @@ def main():
 
 def save_score(number_of_guesses, range_, marker):
     """Save score to scores.txt with range and marker ("!") of whether a good score."""
-    with open("scores.txt", "a") as out_file:
+    with open(FILENAME, "a") as out_file:
         print(f"{number_of_guesses}|{range_}|{marker}", file=out_file)
 
 
@@ -92,7 +93,7 @@ def is_good_score(number_of_guesses, range_):
 def high_scores():
     """Display all saved scores marking which scores are good."""
     scores = []
-    with open("scores.txt") as in_file:
+    with open(FILENAME) as in_file:
         for line in in_file:
             line = line.split("|")
             scores.append((int(line[0]), int(line[1]), line[2]))

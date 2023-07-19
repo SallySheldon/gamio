@@ -58,7 +58,6 @@ def play(low, high):
     choice = input("Do you want to save your score? (y/N) ")
     if choice.upper() == "Y":
         save_score(number_of_guesses, high - low + 1, marker)
-        return
     else:
         print("Fine then.")
 

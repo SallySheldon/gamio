@@ -33,8 +33,8 @@ def main():
 
 def save_score(number_of_guesses, range_, marker):
     """Save score to scores.txt with range and marker ("!") of whether a good score."""
-    with open("scores.txt", "a") as outfile:
-        print(f"{number_of_guesses}|{range_}|{marker}", file=outfile)
+    with open("scores.txt", "a") as out_file:
+        print(f"{number_of_guesses}|{range_}|{marker}", file=out_file)
 
 
 def play(low, high):

@@ -91,16 +91,15 @@ def is_good_score(number_of_guesses, range_):
 
 
 def high_scores():
-    """Display all saved scores, marking which scores are good."""
+    """Display all saved scores marking which scores are good."""
     scores = []
     with open("scores.txt") as in_file:
         for line in in_file:
             line = line.split("|")
-            scores.append((int(line[0]), int(line[1])))
+            scores.append((int(line[0]), int(line[1]), line[2]))
     scores.sort()
     for score in scores:
-        marker = "!" if is_good_score(score[0], score[1]) else ""
-        print(f"{score[0]} ({score[1]}) {marker}")
+        print(f"{score[0]} ({score[1]}) {score[2]}")
 
 
 main()
